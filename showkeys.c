@@ -66,15 +66,21 @@ configure_osd(int lines)
 {
   xosd *osd;
   osd = xosd_create (NKEYS);
-  xosd_set_font(osd, "-adobe-courier-bold-r-normal--34-240-100-100-m-200-iso8859-1");
+
+
+  // Wow, who invented this font specification format?
+  // Couldn't get sfontsel to see my nice fonts, so in the end
+  //   gave up and went with the XOSD documentation example.
+  xosd_set_font(osd, "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*");
+
+
   xosd_set_pos(osd, XOSD_top);
   xosd_set_align(osd, XOSD_right);
 
-  xosd_set_colour(osd, "red");
-  xosd_set_outline_colour(osd, "black");
-  xosd_set_outline_offset(osd, 2);
-  xosd_set_shadow_colour(osd, "grey");
-  xosd_set_shadow_offset(osd, 3);
+  xosd_set_vertical_offset(osd, 48);
+  xosd_set_colour(osd, "#846AFF");
+  xosd_set_outline_colour(osd, "#444444");
+  xosd_set_outline_offset(osd, 3);
 
   xosd_set_timeout(osd, -1);
   return osd;
@@ -89,7 +95,7 @@ display_keystrokes(xosd *osd, KeyStack *stack)
       if (stack->keystrokes[i].times == 1) {
 	xosd_display(osd, i, XOSD_printf, "%s", stack->keystrokes[i].keyname);
       } else {
-	xosd_display(osd, i, XOSD_printf, "%s %d times", stack->keystrokes[i].keyname, stack->keystrokes[i].times);
+	xosd_display(osd, i, XOSD_printf, "%s [x%d]", stack->keystrokes[i].keyname, stack->keystrokes[i].times);
       }
     }
   }
@@ -173,3 +179,4 @@ main()
   XCloseDisplay(d1);
   exit(0);
 }
+
