@@ -31,6 +31,7 @@ You will need
 1. The Xlib development libraries. (available as `libx11-dev` on Debian). 
 2. The libxosd development libraries (available as `libxosd-dev` on Debian).
 3. Your X server should have the [record](http://www.x.org/releases/X11R7.6/doc/libXtst/recordlib.html) extension enabled.
+4. X record extension headers (available as `libxtst-dev` on Debian)
 
 Compiling
 ---------
